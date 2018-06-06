@@ -18,4 +18,3 @@
 #### 2013 Community Health Survey
 
 ## Rough Breakdown of Tasks
-
