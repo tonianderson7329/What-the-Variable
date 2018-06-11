@@ -47,6 +47,8 @@ data_df.head()
       <th>Insured</th>
       <th>Exercise</th>
       <th>Sex</th>
+      <th>Drinker</th>
+      <th>Smoker</th>
     </tr>
   </thead>
   <tbody>
@@ -62,6 +64,8 @@ data_df.head()
       <td>1.0</td>
       <td>1.0</td>
       <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>1</th>
@@ -75,6 +79,8 @@ data_df.head()
       <td>1.0</td>
       <td>1.0</td>
       <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
@@ -88,6 +94,8 @@ data_df.head()
       <td>1.0</td>
       <td>1.0</td>
       <td>1</td>
+      <td>1.0</td>
+      <td>1.0</td>
     </tr>
     <tr>
       <th>3</th>
@@ -101,6 +109,8 @@ data_df.head()
       <td>1.0</td>
       <td>1.0</td>
       <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
@@ -114,6 +124,8 @@ data_df.head()
       <td>1.0</td>
       <td>1.0</td>
       <td>0</td>
+      <td>1.0</td>
+      <td>1.0</td>
     </tr>
   </tbody>
 </table>
@@ -130,56 +142,136 @@ neighpov_labels = {"(%) of Population Under FPL": {1: "0 - <10% (low pov)", 2: "
 race_labels = {"Race": {1:"White Non-Hispanic",2:"Black Non-Hispanic",3:"Hispanic",4:"Asian/PI Non-Hispanic",5:"Other Non-Hispanic"}}
 ```
 
-## Examples of General Health by Race
-
 
 ```python
-plt.figure(figsize=(10,8))
-sns.barplot(x="General Health", y="Race", data=data_df);
+# Labels for values
+data_df["General Health"] = data_df["General Health"].map(lambda x:
+                                                "1 Poor" if x == 1 else
+                                                ("2 Fair" if x == 2 else
+                                                 ("3 Good" if x == 3 else
+                                                  ("4 Very Good" if x == 4 else
+                                                   ( "5 Excellent")))))
+
+data_df = data_df.sort_values('General Health',ascending=False)
+
+data_df.head()
 ```
 
 
-![png](output_4_0.png)
 
 
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-```python
-plt.figure(figsize=(10,8))
-sns.set()
-sns.violinplot(x="General Health", y="Race", data=data_df, inner=None)
-sns.swarmplot(x="General Health", y="Race", data=data_df, color="w", alpha=.5);
-```
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
 
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>General Health</th>
+      <th>(%) of Population Under FPL</th>
+      <th>Eaten Fruits or Veggies Yesterday</th>
+      <th>Age Group</th>
+      <th>Race</th>
+      <th>Education</th>
+      <th>Insured</th>
+      <th>Exercise</th>
+      <th>Sex</th>
+      <th>Drinker</th>
+      <th>Smoker</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3956</th>
+      <td>4245</td>
+      <td>5 Excellent</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>5728</th>
+      <td>6237</td>
+      <td>5 Excellent</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1186</th>
+      <td>1260</td>
+      <td>5 Excellent</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>1</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3819</th>
+      <td>4095</td>
+      <td>5 Excellent</td>
+      <td>3.0</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>2</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3813</th>
+      <td>4089</td>
+      <td>5 Excellent</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>2</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-![png](output_5_0.png)
-
-
-
-```python
-sns.set(style="whitegrid")
-
-# Initialize the matplotlib figure
-f, ax = plt.subplots(figsize=(6, 15))
-
-# Plot the total crashes
-sns.set_color_codes("pastel")
-sns.barplot(x="General Health", y="Race", data=data_df,
-            label="Race", color="b")
-
-# Plot the crashes where alcohol was involved
-sns.set_color_codes("muted")
-sns.barplot(x="General Health", y="Sex", data=data_df,
-            label="Sex", color="b")
-
-# Add a legend and informative axis label
-ax.legend(ncol=1, loc="lower right", frameon=True)
-ax.set(xlim=(-1, 6), ylabel="",
-       xlabel="General Health")
-sns.despine(left=True, bottom=True)
-```
-
-
-![png](output_6_0.png)
 
 
 
@@ -193,77 +285,74 @@ plot_df = data_df.replace(race_labels, inplace=True)
 
 
 ```python
-plt.figure(figsize=(10,8))
-sns.set()
-sns.countplot(x="General Health", hue="Race", data=data_df)
+total_general_health = data_df.groupby(['General Health']).count()['Race']
+total_general_health
+
+#Assign colors
+colors= ['darkred', 'gold', 'purple', 'blue', 'green']
+
+total_race_chart = total_general_health.plot(kind='pie', figsize=(8,8), shadow=False, autopct="%1.1f%%", pctdistance=0.6, colors=colors, startangle=180, wedgeprops = {'linewidth': 10, 'edgecolor': 'white'})
+total_race_chart.set_title("% of Total General Health of NY", fontsize=18)
+plt.axis('equal')
+plt.ylabel("")
+
+my_circle=plt.Circle( (0,0), 0.7, color='white')
+p=plt.gcf()
+p.gca().add_artist(my_circle)
+
+plt.savefig("% of Total General Health")
+plt.show()
+
 ```
 
 
+![png](output_5_0.png)
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1d38c566748>
+## General Health by Race
 
 
+```python
+plt.figure(figsize=(10,8))
+sns.set()
+sns.countplot(x="General Health", hue="Race", data=data_df)
+plt.title('General Health by Race', fontsize=14)
+
+plt.savefig("General Health by Race")
+```
 
 
-![png](output_8_1.png)
+![png](output_7_0.png)
 
 
-## Examples of General Health by Neighborhood
+## General Health by Environment
 
 
 ```python
 plt.figure(figsize=(10,8))
 sns.set()
 sns.countplot(x="General Health", hue="(%) of Population Under FPL", data=data_df)
+plt.title('General Health by Environment',fontsize=14)
+
+plt.savefig("General Health by Environment")
 ```
 
 
+![png](output_9_0.png)
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x1d38e9a7198>
-
-
-
-
-![png](output_10_1.png)
-
-
-
-```python
-plotdata_df = pd.read_csv(clean_csv)
-plotdata_df.head()
-plt.figure(figsize=(10,8))
-sns.lvplot(x="General Health", y="(%) of Population Under FPL", data=plotdata_df)
-```
-
-
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x1d38f02c668>
-
-
-
-
-![png](output_11_1.png)
-
-
-## Examples of General Health by Education
+## General Health by Education
 
 
 ```python
 plt.figure(figsize=(10,8))
 sns.set()
 sns.countplot(x="General Health", hue="Education", data=data_df)
+plt.title('General Health by Education', fontsize=14)
+
+plt.savefig("General Health by Education")
 ```
 
 
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x1d390ca6358>
-
-
-
-
-![png](output_13_1.png)
+![png](output_11_0.png)
 
