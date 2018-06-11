@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> 829a4b3b37144f1ab23f288c6ad077cc6531dae5
 # The Good, the Bad, & the Ugly of New York Health
 
 ## Team Members
