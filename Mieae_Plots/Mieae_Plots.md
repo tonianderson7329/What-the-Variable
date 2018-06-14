@@ -313,6 +313,7 @@ data_df.head()
 
 
 ```python
+#Get counts
 gender_count = data_df["Gender"].value_counts()
 print(gender_count)
 diet_count = data_df["Fruit & Veg Servings"].count()
@@ -340,6 +341,7 @@ print(age_count)
 
 
 ```python
+#Diet graph
 sns.set(style="darkgrid")
 flatui = ["#9b59b6", "#3498db","#2ecc71"]
 sns.countplot(x="General Health Category", hue="Fruit & Veg Servings",data=data_df,palette=flatui,hue_order=["None","1-4 servings",">=5 servings"]).set_title("General Health by Diet\nTotal: 7,913")
@@ -352,6 +354,7 @@ plt.savefig("fruitveggie.png")
 
 
 ```python
+#Exercise Graph
 grouped_gender = data_df.groupby(['General Health Category','Exercise Y/N'])['General Health Category'].count().unstack('Exercise Y/N')
 grouped_gender[['Yes','No']].plot(kind='bar',edgecolor="black",stacked=True)
 
@@ -368,165 +371,16 @@ plt.savefig("exercisestack.png")
 
 
 
-    <matplotlib.figure.Figure at 0x2422f45d3c8>
+    <matplotlib.figure.Figure at 0x1c0b441c4a8>
 
 
 
 ```python
-sns.countplot(x="General Health Category", hue="Exercise Y/N", data=data_df).set_title("General Health by Exercise\nExercise: 6,019 & No Exercise: 1,894")
-plt.savefig("exercisesbs.png")
-```
-
-
-![png](output_6_0.png)
-
-
-
-```python
-bars = ("Excellent","Very Good","Good","Fair","Poor")
-
-grouped_gender = data_df.groupby(['General Health Category','Gender'])['General Health Category'].count().unstack('Gender')
-grouped_gender[['Male','Female']].plot(kind='bar',edgecolor="white",stacked=True)
-                                                        
-plt.ylabel("Count")
-plt.title("General Health by Gender\nFemale: 4,550 & Male 3,363")
-plt.legend (loc = "upper right")
-plt.xticks(rotation=0)
-plt.show()
-plt.savefig("genderstack.png")
-```
-
-
-![png](output_7_0.png)
-
-
-
-    <matplotlib.figure.Figure at 0x2422f5a1b38>
-
-
-
-```python
+#Gender Graph
 sns.countplot(x="General Health Category", hue="Gender",palette="muted", data=data_df).set_title("General Health by Gender\nFemale: 4,550 & Male 3,363")
 plt.savefig("gendersbs.png")
 ```
 
 
-![png](output_8_0.png)
-
-
-
-```python
-#Create a dataframe for each sex
-male = data_df[data_df["Sex"] == 1]
-female = data_df[data_df["Sex"] == 0]
-```
-
-
-```python
-m_count = male["Age Category"].value_counts()
-print(m_count)
-f_count = female["Age Category"].value_counts()
-print(f_count)
-```
-
-    45-64 yrs    1288
-    30-44 yrs     833
-    65+ yrs       675
-    18-24yrs      305
-    25-29 yrs     262
-    Name: Age Category, dtype: int64
-    45-64 yrs    1710
-    30-44 yrs    1228
-    65+ yrs       976
-    25-29 yrs     335
-    18-24yrs      301
-    Name: Age Category, dtype: int64
-    
-
-
-```python
-m_count = male["Gender"].value_counts()
-print(m_count)
-f_count = female["Gender"].value_counts()
-print(f_count)
-```
-
-    Male    3363
-    Name: Gender, dtype: int64
-    Female    4550
-    Name: Gender, dtype: int64
-    
-
-
-```python
-#General Health of Males by Age Group
-group_male = male.groupby(['General Health Category','Age Category'])['General Health Category'].count().unstack('Age Category')
-group_male[['18-24yrs','25-29 yrs','30-44 yrs','45-64 yrs','65+ yrs']].plot(kind="bar")
-
-plt.ylabel("Count")
-plt.title("General Health of Males by Age Group")
-plt.xticks(rotation=0)
-plt.ylim(0,600)
-plt.savefig("malesbyage.png")
-plt.show()
-```
-
-
-![png](output_12_0.png)
-
-
-
-```python
-#General Health of Males by Age Group
-group_male = male.groupby(['Age Category','General Health Category'])['Age Category'].count().unstack('General Health Category')
-group_male[['1 Poor','2 Fair','3 Good','4 Very Good','5 Excellent']].plot(kind="bar")
-
-plt.ylabel("Count")
-plt.title("General Health of Males by Age Group")
-plt.xticks(rotation=0)
-plt.ylim(0,600)
-plt.savefig("malesbyage2.png")
-plt.show()
-```
-
-
-![png](output_13_0.png)
-
-
-
-```python
-#General Health of Females by Age Group
-
-group_female = female.groupby(['General Health Category','Age Category'])['General Health Category'].count().unstack('Age Category')
-group_female[['18-24yrs','25-29 yrs','30-44 yrs','45-64 yrs','65+ yrs']].plot(kind="bar")
-
-plt.ylabel("Count")
-plt.title("General Health of Females by Age Group")
-plt.xticks(rotation=0)
-plt.ylim(0,600)
-plt.savefig("femalebyage.png")
-plt.show()
-```
-
-
-![png](output_14_0.png)
-
-
-
-```python
-#General Health of Females by Age Group
-group_female = female.groupby(['Age Category','General Health Category'])['Age Category'].count().unstack('General Health Category')
-group_female[['1 Poor','2 Fair','3 Good','4 Very Good','5 Excellent']].plot(kind="bar")
-#group_female = female.groupby(['Age Category'])
-
-plt.ylabel("Count")
-plt.title("General Health of Females by Age Group")
-plt.xticks(rotation=0)
-plt.ylim(0,600)
-plt.savefig("femalebyage2.png")
-plt.show()
-```
-
-
-![png](output_15_0.png)
+![png](output_6_0.png)
 
