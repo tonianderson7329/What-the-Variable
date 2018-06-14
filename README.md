@@ -10,7 +10,7 @@
 
 ## Project Description/Outline
 ![](health.PNG)
-#### Examining the influences of neighborhood proverty rates, insurance coverage, exercise and nutrition.  
+#### Examining the influences of social & economics and characteristics & behaviors.  
 #### The dependant variable is health state, and the values are excellent, very good, good, fair, & poor,
 #### Controlling for age, sex, and race. 
 
