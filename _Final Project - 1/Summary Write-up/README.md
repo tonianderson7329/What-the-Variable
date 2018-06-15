@@ -11,15 +11,15 @@ Utilizing the New York Community Health Survey, this project examines the relati
 ## Questions and Findings:
 
 * 1.) How do various demographic factors affect the self-reported general health of the respondent?
-![](demo.PNG)
+![](demo.png)
 Age is a strong predictor of self-reported health.  Those in poor health are almost 120% more likely to be older than those in good health. Conversely those in excellent health are 20% more likely to be younger than those in good health. 
 
 * 2.) How do various socio-economic factors affect the self-reported general health of the respondent?
-![](se.PNG)
+![](se.png)
 Education is also a strong predictor of self-reported health.  Those in poor health are almost 40% less likely to have a higher education than those in good health. Conversely those in excellent health are almost 50% more likely to have a higher education than those in good health.  
 
 * 3.) How do various lifestyle and behavioral factors affect the self-reported general health of the respondent?
-![](lifestyle.PNG)
+![](lifestyle.png)
 While there is a direct positive relationship between healthy habits like exercise and eating fruits and veggies, apparently smoking and drinking also share a positive relationship with health.  This is due to the fact that a sizable amount of people that report themselves as in excellent health either smoke or drink.  While these behaviors do negatively affect health over time, one’s self-perception of health is somewhat subjective in the present. Therefore, at least in the present, people in excellent health are 20%  more likely to be smokers and drinkers.
 
 * For specific descriptive plots see files in decriptive plots folder
